@@ -3,13 +3,10 @@ name: Docker
 on:
   push:
     branches: 
-      - "main" 
+      - "master" 
     # Publish semver tags as releases.
     tags:  
       - 'v*.*.*'
-  pull_request:
-    branches: 
-      - "main"
 
 jobs:
   build:
@@ -25,8 +22,7 @@ jobs:
         with: 
           images: ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
+            type=raw,value=latest
             type=semver,pattern={{version}},suffix=${{ github.ref_name }}
             type=semver,pattern={{major}}.{{minor}},suffix=${{ github.ref_name }}
             type=semver,pattern={{major}},suffix=${{ github.ref_name }}
