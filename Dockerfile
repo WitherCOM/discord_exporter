@@ -8,6 +8,5 @@ FROM alpine:latest
 WORKDIR /
 COPY --from=builder /build/discord_exporter /discord_exporter
 EXPOSE 9101
-USER nonroot:nonroot
 ENTRYPOINT ["/discord_exporter"]
 
